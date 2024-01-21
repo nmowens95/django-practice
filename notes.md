@@ -41,3 +41,28 @@ Render HTML:
 
 Django Templates:
 - create a templates folder in <app> directory
+- add html.index
+- views in app should look like: 
+    from django.http import HttpResponse
+    from django.template import loader
+
+    def members(request):
+    template = loader.get_template('myfirst.html')
+    return HttpResponse(template.render())
+- make sure app <name> is listed in settings
+- run: python3 manage.py migrate
+- python3 manage.py runserver
+
+Django Models:
+- Go to app models.py and create a class
+- Ex:
+    from django.db import models
+
+    # Create your models here.
+    class Member(models.Model):
+        firstname = models.CharField(max_length=255)
+        lastname = models.CharField(max_length=255)
+- This ex is using sqlite
+- run to create migration: python3 manage.py makemigrations <app name>
+- run to execute migration: python3 manage.py migrate
+- view sql statement: python3 manage.py sqlmigrate members 0001
